@@ -1,0 +1,19 @@
+int Solution::trap(const vector<int> &A) {
+    int l=0,r=A.size()-1;
+    int maxl=INT_MIN, maxr=INT_MIN;
+    int ans=0;
+    while(l<=r){
+        if(A[l]<=A[r]){
+            maxl = max(maxl,A[l]);
+            ans += (maxl-A[l]);
+            l++;
+        }
+        else {
+            maxr = max(maxr,A[r]);
+            ans += (maxr-A[r]);
+            r--;
+        }
+      
+    }
+    return ans;
+}
