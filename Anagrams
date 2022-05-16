@@ -1,0 +1,15 @@
+vector<vector<int> > Solution::anagrams(const vector<string> &A) {
+    vector<vector<int>>ans;
+    map<string,vector<int>>m;
+    for(int i=0;i<A.size();i++){
+        string s=A[i];
+        sort(s.begin(),s.end());
+        m[s].push_back(i+1);
+    }
+    auto it=m.begin();
+    while(it!=m.end()){
+        ans.push_back(it->second);
+        it++;
+    }
+    return ans;
+}
