@@ -1,0 +1,29 @@
+RandomListNode* Solution::copyRandomList(RandomListNode* A) {
+    RandomListNode* itr=A;
+    RandomListNode* front=A;
+    while(itr!=NULL){
+        front = itr->next;
+        RandomListNode*copy = new RandomListNode(itr->label);
+        itr->next = copy;
+        copy->next = front;
+        itr = front;
+    }
+    itr = A;
+    while(itr!=NULL){
+        if(itr->random!=NULL){
+            itr->next->random = itr->random->next;
+        }
+        itr = itr->next->next;
+    }
+    itr=A;
+    RandomListNode*dummy = new RandomListNode(0);
+    RandomListNode* copy = dummy;
+    while(itr!=NULL){
+        front = itr->next->next;
+        copy->next = itr->next;
+        itr->next = front;
+        copy = copy->next;
+        itr = front;
+    }
+    return dummy->next;
+}
